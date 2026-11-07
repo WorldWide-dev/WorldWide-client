@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- Политика конфиденциальности для Google Play. Публикуется на GitHub Pages репозитория WorldWide-dev/WorldWide-client
+     (файл privacy/index.html → https://worldwide-dev.github.io/WorldWide-client/privacy/). Почта для связи — та же, что в Play Console.
+     Держать в согласии с онбордингом (app/.../ui/Onboarding.kt) и docs/play/CONSOLE.md. -->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorldWide — Политика конфиденциальности / Privacy Policy</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0B0B0D; color: #F2F2F3; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 28px; line-height: 1.2; margin: 0 0 4px; }
+  h2 { font-size: 19px; margin: 32px 0 8px; }
+  p, li { color: #D6D6DA; }
+  .muted { color: #9A9AA3; font-size: 14px; }
+  a { color: #C6F36B; }
+  nav { margin: 16px 0 8px; }
+  nav a { margin-right: 16px; }
+  hr { border: 0; border-top: 1px solid #26262C; margin: 56px 0; }
+  ul { padding-left: 20px; }
+</style>
+</head>
+<body>
+<main>
+
+<section id="ru" lang="ru">
+<h1>Политика конфиденциальности WorldWide</h1>
+<p class="muted">Действует с 5 ноября 2026 года</p>
+<nav><a href="#ru">Русский</a><a href="#en">English</a></nav>
+
+<p>WorldWide — VPN-клиент для Android. Сам он VPN-серверов не предоставляет: вы добавляете подписку своего VPN-провайдера, и приложение подключается к его серверам. У разработчика WorldWide нет серверов, которые получали бы ваши данные, нет аккаунтов, рекламы, аналитики и трекеров.</p>
+
+<h2>Что хранится на телефоне</h2>
+<p>Ссылки на подписки, списки серверов, настройки и статистика трафика хранятся только на вашем устройстве и не попадают в резервные копии. Удаление приложения или очистка его данных удаляет всё.</p>
+
+<h2>Что получает ваш VPN-провайдер</h2>
+<p>Когда приложение загружает или обновляет подписку, оно отправляет на сервер провайдера:</p>
+<ul>
+  <li>IP-адрес телефона;</li>
+  <li>идентификатор устройства — нужен провайдеру для лимита устройств. Это хеш SHA-256 от Android ID с солью; сам Android ID не передаётся. Хеш не делает идентификатор анонимным: он один и тот же для вашего телефона (меняется после сброса к заводским настройкам) и для всех ваших подписок, поэтому провайдер может связать его с вашей подпиской;</li>
+  <li>модель телефона, версию Android и версию приложения.</li>
+</ul>
+<p>Пока VPN включён, ваш трафик идёт в зашифрованном виде на сервер провайдера. Провайдер может видеть, когда вы подключались, сколько трафика использовали, и домены сайтов и сервисов, к которым вы обращаетесь (например, example.com, но не полный адрес страницы). Содержимое защищённых (HTTPS) соединений провайдер не видит; соединения без HTTPS видны ему целиком.</p>
+<p>Как провайдер обращается с этими данными, определяет его собственная политика конфиденциальности. Приложение ничего не отправляет провайдеру, пока вы не согласитесь на первом экране.</p>
+<p>Если сервер подписки недоступен, приложение пробует обновить подписку через сервер этой же подписки или через сервер другой добавленной вами подписки. Провайдер той подписки видит только адрес (домен) сервера подписки, содержимое запроса зашифровано. Это выключается в настройках: «Расширенные» → «Через другие подписки».</p>
+
+<h2>Другие сервисы</h2>
+<ul>
+  <li><strong>ipwho.is</strong> — по IP-адресу определяется примерное место, чтобы показать точку «Вы» на глобусе. Результат хранится только на телефоне.</li>
+  <li><strong>Cloudflare и Google (DNS-over-HTTPS)</strong> — если обычный DNS не находит сервер подписки, его адрес узнаётся у DNS Cloudflare (1.1.1.1) или Google (8.8.8.8). Они видят только домен сервера подписки.</li>
+  <li><strong>Google Play</strong> (версия из Google Play) — приложение читает на телефоне install referrer: если провайдер дал вам ссылку на WorldWide в Google Play, в ней может быть ссылка на вашу подписку. Обновления приходят через Google Play.</li>
+  <li><strong>GitHub</strong> (версия с сайта) — приложение проверяет обновления в релизах на GitHub. GitHub видит IP-адрес, как при открытии любой страницы.</li>
+</ul>
+
+<h2>Проверка сети</h2>
+<p>В настройках есть «Проверка сети» — она запускается только вами. Перед запуском приложение показывает, куда обратится проверка и что попадёт в файл. Во время проверки приложение обращается к серверу подписки и серверам вашего провайдера, к DNS и тесту скорости Cloudflare (1.1.1.1, speed.cloudflare.com), к DNS Google (8.8.8.8), к ipwho.is (внешний IP и оператор) и к сайтам для сравнения: ya.ru, vk.com, mail.ru, wikipedia.org, cloudflare.com, apple.com. Эти сервисы видят ваш IP-адрес, как при открытии любой страницы. Проверка может одновременно использовать Wi-Fi и мобильный интернет — до 25 МБ.</p>
+<p>Результат — текстовый файл на телефоне: модель телефона, версии Android и приложения, язык; тип сети, оператор и уровень сигнала; IP-адрес без двух последних чисел (например, 95.24.xxx.xxx); результаты проверки серверов (названия, протоколы, задержки, скорость, адреса скрыты); ваш ответ на экране проверки и выбранное вами приложение; технический журнал приложения за последние минуты. В файл не попадают ссылки на подписку, ключи, пароли, имя и пароль Wi-Fi, MAC-адреса, местоположение и контакты. Файл никуда не отправляется сам: вы можете посмотреть его целиком и отправить в поддержку провайдера. Через 7 дней он удаляется.</p>
+
+<h2>Автопроверки сети</h2>
+<p>Если VPN не работает, приложение ищет причину, чтобы подсказать, что сделать. Оно смотрит состояние сети в Android и время из ответов серверов, к которым и так обращается. Пока открыт главный экран и VPN включён, раз в минуту приложение проверяет туннель запросом через ваш VPN-сервер к www.gstatic.com. Если серверы не отвечают, приложение проверяет, есть ли интернет без VPN: обращается напрямую к серверу подписки, ya.ru, vk.com, gosuslugi.ru, www.gstatic.com, captive.apple.com, www.cloudflare.com и адресам 1.1.1.1 и 8.8.8.8 — не чаще раза в минуту, только заголовки, без загрузки страниц. Эти сервисы видят ваш IP-адрес, как при открытии любой страницы. Результаты остаются на телефоне и никуда не отправляются. Проверки без VPN выключаются в настройках («Расширенные» → «Автопроверки сети») и не работают, если в Android включена блокировка соединений без VPN.</p>
+
+<h2>Разрешения</h2>
+<ul>
+  <li><strong>VPN</strong> — основная функция: направляет трафик через сервер провайдера.</li>
+  <li><strong>Камера</strong> — только чтобы отсканировать QR-код подписки. Изображение обрабатывается на телефоне и никуда не отправляется.</li>
+  <li><strong>Список приложений</strong> — для раздельного туннелирования. Он читается на телефоне только на экране выбора приложений и никуда не отправляется; приложение хранит только ваш выбор.</li>
+  <li><strong>Уведомления</strong> — статус VPN и предупреждения об окончании подписки.</li>
+</ul>
+
+<h2>Безопасность</h2>
+<p>Данные приложения хранятся во внутреннем хранилище, недоступном другим приложениям, и исключены из резервных копий. Подписки загружаются только по HTTPS (адрес с http:// приложение открывает по https://). Приложение не подключается к серверам без шифрования. Ключи, пароли и идентификаторы в техническом журнале приложения скрыты.</p>
+
+<h2>Хранение и удаление</h2>
+<p>У разработчика нет серверов и аккаунтов, поэтому у него нет ваших данных. Данные на телефоне хранятся, пока вы не удалите подписку, приложение или его данные; файл проверки сети удаляется через 7 дней, точка «Вы» — вместе с данными приложения. Данные, которые получил ваш провайдер, хранятся и удаляются по его правилам — обращайтесь к нему. Отозвать согласие можно, удалив подписки или приложение.</p>
+
+<h2>Дети</h2>
+<p>Приложение не предназначено для детей младше 13 лет.</p>
+
+<h2>Изменения и контакты</h2>
+<p>Если политика изменится, новая версия появится на этой странице с новой датой. Вопросы: <a href="mailto:WorldWide.Proxy@pm.me">WorldWide.Proxy@pm.me</a>.</p>
+</section>
+
+<hr>
+
+<section id="en" lang="en">
+<h1>WorldWide Privacy Policy</h1>
+<p class="muted">Effective November 5, 2026</p>
+<nav><a href="#ru">Русский</a><a href="#en">English</a></nav>
+
+<p>WorldWide is a VPN client for Android. It does not provide VPN servers itself: you add a subscription from your VPN provider, and the app connects to that provider's servers. The WorldWide developer runs no servers that receive your data, and the app has no accounts, ads, analytics or trackers.</p>
+
+<h2>What stays on your phone</h2>
+<p>Subscription links, server lists, settings and traffic statistics are stored only on your device and are excluded from backups. Uninstalling the app or clearing its data removes all of it.</p>
+
+<h2>What your VPN provider receives</h2>
+<p>When the app loads or refreshes a subscription, it sends to the provider's server:</p>
+<ul>
+  <li>your phone's IP address;</li>
+  <li>a device ID, which providers use to enforce device limits. It is a salted SHA-256 hash of the Android ID; the Android ID itself is never sent. Hashing does not make the ID anonymous: it stays the same for your phone (it changes after a factory reset) and across all your subscriptions, so your provider can link it to your subscription;</li>
+  <li>your phone model, Android version and app version.</li>
+</ul>
+<p>While the VPN is on, your traffic goes encrypted to the provider's server. The provider can see when you connect, how much traffic you use, and the domains of the sites and services you reach (for example, example.com, but not the full page address). It cannot see the contents of secure (HTTPS) connections; connections without HTTPS are fully visible to it.</p>
+<p>How the provider handles this data is governed by its own privacy policy. The app sends nothing to the provider until you agree on the first screen.</p>
+<p>If a subscription server is unreachable, the app tries to update the subscription through a server of the same subscription or through a server of another subscription you added. That subscription's provider sees only the address (domain) of the subscription server; the request itself is encrypted. You can turn this off in Settings: Advanced → Via other subscriptions.</p>
+
+<h2>Other services</h2>
+<ul>
+  <li><strong>ipwho.is</strong>: looks up a rough location from your IP address to show the "You" dot on the globe. The result is stored only on your phone.</li>
+  <li><strong>Cloudflare and Google (DNS over HTTPS)</strong>: if regular DNS cannot find the subscription server, its address is looked up with Cloudflare DNS (1.1.1.1) or Google DNS (8.8.8.8). They see only the subscription server's domain.</li>
+  <li><strong>Google Play</strong> (Google Play edition): the app reads the install referrer on your phone. If your provider gave you a Google Play link to WorldWide, it may contain your subscription link. Updates come through Google Play.</li>
+  <li><strong>GitHub</strong> (website edition): the app checks GitHub releases for updates. GitHub sees your IP address, as with any web page.</li>
+</ul>
+
+<h2>Network check</h2>
+<p>Settings include a "Network check" that runs only when you start it. Before it starts, the app shows where the check connects and what goes into the file. During the check the app connects to your provider's subscription server and servers, to Cloudflare DNS and speed test (1.1.1.1, speed.cloudflare.com), to Google DNS (8.8.8.8), to ipwho.is (external IP and operator) and to comparison sites: ya.ru, vk.com, mail.ru, wikipedia.org, cloudflare.com, apple.com. These services see your IP address, as with any web page. The check may use Wi-Fi and mobile data at the same time, up to 25 MB.</p>
+<p>The result is a text file on your phone: phone model, Android and app versions, language; network type, operator and signal level; your IP address without its last two numbers (for example, 95.24.xxx.xxx); server check results (names, protocols, delays, speed, with addresses hidden); your answer on the check screen and the app you chose; the app's technical log for the last few minutes. The file never contains subscription links, keys, passwords, the Wi-Fi name or password, MAC addresses, location or contacts. The file is not sent anywhere on its own: you can view all of it and send it to your provider's support. It is deleted after 7 days.</p>
+
+<h2>Automatic network checks</h2>
+<p>If the VPN isn't working, the app looks for the cause so it can suggest what to do. It looks at Android's network state and at the time in replies from servers it already contacts. While the main screen is open and the VPN is on, once a minute the app checks the tunnel with a request to www.gstatic.com through your VPN server. If the servers don't reply, the app checks whether there is internet without the VPN: it connects directly to the subscription server, ya.ru, vk.com, gosuslugi.ru, www.gstatic.com, captive.apple.com, www.cloudflare.com and the addresses 1.1.1.1 and 8.8.8.8, at most once a minute, headers only, without loading pages. These services see your IP address, as with any web page. The results stay on the phone and are not sent anywhere. Checks without the VPN can be turned off in settings (Advanced → Auto network checks) and do not run while Android blocks connections without VPN.</p>
+
+<h2>Permissions</h2>
+<ul>
+  <li><strong>VPN</strong>: the core function, routing your traffic through the provider's server.</li>
+  <li><strong>Camera</strong>: only to scan a subscription QR code. Images are processed on the phone and never sent anywhere.</li>
+  <li><strong>App list</strong>: for split tunneling. It is read on the phone only on the app selection screen and is never sent anywhere; the app stores only your selection.</li>
+  <li><strong>Notifications</strong>: VPN status and subscription expiry warnings.</li>
+</ul>
+
+<h2>Security</h2>
+<p>App data is kept in the app's internal storage, which other apps cannot access, and is excluded from backups. Subscriptions are loaded over HTTPS only (an http:// address is opened over https://). The app does not connect to servers without encryption. Keys, passwords and identifiers in the app's technical log are hidden.</p>
+
+<h2>Retention and deletion</h2>
+<p>The developer runs no servers or accounts, so holds none of your data. Data on your phone is kept until you delete the subscription, the app or its data; the network check file is deleted after 7 days, and the "You" dot goes with the app's data. Data your provider received is kept and deleted under the provider's rules; contact the provider about it. You can withdraw your consent by deleting your subscriptions or the app.</p>
+
+<h2>Children</h2>
+<p>The app is not intended for children under 13.</p>
+
+<h2>Changes and contact</h2>
+<p>If this policy changes, the new version will appear on this page with a new date. Questions: <a href="mailto:WorldWide.Proxy@pm.me">WorldWide.Proxy@pm.me</a>.</p>
+</section>
+
+</main>
+</body>
+</html>
